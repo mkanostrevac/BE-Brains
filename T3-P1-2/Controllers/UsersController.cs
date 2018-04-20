@@ -15,19 +15,19 @@ namespace T3_P1_2.Controllers
 {
     public class UsersController : ApiController
     {
-        private UnitOfWork unitOfWork = new UnitOfWork();
+        private UnitOfWork db = new UnitOfWork();
 
         // GET: api/Users
         public IEnumerable<User> GetUsers()
         {
-            return unitOfWork.UserRepository.Get();
+            return db.UserRepository.Get();
         }
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
-            User user = unitOfWork.UserRepository.GetByID(id);
+            User user = db.UserRepository.GetByID(id);
             if (user == null)
             {
                 return NotFound();
@@ -50,8 +50,8 @@ namespace T3_P1_2.Controllers
                 return BadRequest();
             }
 
-            unitOfWork.UserRepository.Update(user);
-            unitOfWork.Save();
+            db.UserRepository.Update(user);
+            db.Save();
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -65,8 +65,8 @@ namespace T3_P1_2.Controllers
                 return BadRequest(ModelState);
             }
 
-            unitOfWork.UserRepository.Insert(user);
-            unitOfWork.Save();
+            db.UserRepository.Insert(user);
+            db.Save();
 
             return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
         }
@@ -75,14 +75,14 @@ namespace T3_P1_2.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(int id)
         {
-            User user = unitOfWork.UserRepository.GetByID(id);
+            User user = db.UserRepository.GetByID(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            unitOfWork.UserRepository.Delete(id);
-            unitOfWork.Save();
+            db.UserRepository.Delete(id);
+            db.Save();
 
             return Ok(user);
         }
