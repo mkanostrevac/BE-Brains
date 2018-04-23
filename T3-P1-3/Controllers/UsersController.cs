@@ -86,5 +86,31 @@ namespace T3_P1_3.Controllers
 
             return Ok(user);
         }
+
+        [ResponseType(typeof(User))]
+        [Route("api/users/{id}/address/{addressId}", Name = "AddAddress")]
+        [HttpPut]
+        public IHttpActionResult PutAddress(int id, int addressId = 0)
+        {
+            User user = db.UserRepository.GetByID(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            Address address = db.AddressRepository.GetByID(addressId);
+
+            if (address == null)
+            {
+                return NotFound();
+            }
+
+            user.Address = address;
+            db.UserRepository.Update(user);
+            db.Save(); // automatski ce biti sacuvana i adresa
+
+            return CreatedAtRoute("AddAddress", new { id = user.Id, addressId = address.Id }, user);
+        }
     }
 }

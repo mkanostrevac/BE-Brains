@@ -10,6 +10,7 @@ namespace T3_P1_3.Repositories
     {
         private DataAccessContext context = new DataAccessContext();
         private GenericRepository<User> userRepository;
+        private GenericRepository<Address> addressRepository;
 
         public GenericRepository<User> UserRepository
         {
@@ -20,6 +21,18 @@ namespace T3_P1_3.Repositories
                     this.userRepository = new GenericRepository<User>(context);
                 }
                 return userRepository;
+            }
+        }
+
+        public GenericRepository<Address> AddressRepository
+        {
+            get
+            {
+                if (this.addressRepository == null)
+                {
+                    this.addressRepository = new GenericRepository<Address>(context);
+                }
+                return addressRepository;
             }
         }
 

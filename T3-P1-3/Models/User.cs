@@ -12,5 +12,7 @@ namespace T3_P1_3.Models
         public string Name { get; set; }
 
         public string Email { get; set; }
+
+        public virtual Address Address { get; set; }
     }
 }

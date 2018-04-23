@@ -14,5 +14,7 @@ namespace T3_P1_3.Models
         }
 
         public DbSet<User> Users { get; set; }
+
+        public System.Data.Entity.DbSet<T3_P1_3.Models.Address> Addresses { get; set; }
     }
 }
