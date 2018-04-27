@@ -12,6 +12,7 @@ namespace T4_P1_1
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            UnityConfig.RegisterComponents();
         }
     }
 }
