@@ -11,25 +11,14 @@ namespace T4_P1_2.Repositories
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private DbContext context;
-        private IGenericRepository<User> usersRepository;
 
         public UnitOfWork(DbContext context)
         {
             this.context = context;
         }
 
-        public IGenericRepository<User> UsersRepository
-        {
-            get
-            {
-                if (this.usersRepository == null)
-                {
-                    this.usersRepository = new GenericRepository<User>(this.context);
-                }
-
-                return usersRepository;
-            }
-        }
+        [Dependency]
+        public IGenericRepository<User> UsersRepository { get; set; }
 
         public void Save()
         {
