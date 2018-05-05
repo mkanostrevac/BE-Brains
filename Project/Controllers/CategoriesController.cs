@@ -45,7 +45,7 @@ namespace Project.Controllers
             return CreatedAtRoute("PostCategory", new { id = createdCategory.ID }, createdCategory);
         }
 
-        // PUT: /project/categories/{id} - izmena postojece kategorije
+        // PUT: /project/categories/{id} - promena postojece kategorije
         [Route("{id:int}")]
         [ResponseType(typeof(CategoryModel))]
         public IHttpActionResult PutCategory(int id, CategoryModel category)

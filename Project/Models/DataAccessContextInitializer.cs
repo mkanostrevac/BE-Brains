@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace Project.Models
@@ -10,6 +11,7 @@ namespace Project.Models
         {
             SeedUsers(context);
             SeedCategories(context);
+            SeedOffers(context);
 
             base.Seed(context);
         }
@@ -45,6 +47,55 @@ namespace Project.Models
             categories.Add(new CategoryModel() { Name = "Sporet", Description = "Bela tehnika" });
 
             context.Categories.AddRange(categories);
+        }
+
+        private void SeedOffers(DataAccessContext context)
+        {
+            IList<OfferModel> offers = new List<OfferModel>();
+
+            offers.Add(new OfferModel()
+            {
+                Name = "Ponuda 1",
+                Description = "Ponuda 1",
+                Created = new DateTime(2018, 5, 5),
+                Expires = new DateTime(2018, 5, 10),
+                RegularPrice = 4.34,
+                ActionPrice = 4.12,
+                ImagePath = "",
+                AvailableOffers = 2,
+                BoughtOffers = 10,
+                Status = OfferStatuses.WAIT_FOR_APPROVING
+            });
+
+            offers.Add(new OfferModel()
+            {
+                Name = "Ponuda 2",
+                Description = "Ponuda 2",
+                Created = new DateTime(2018, 5, 5),
+                Expires = new DateTime(2018, 5, 20),
+                RegularPrice = 5.34,
+                ActionPrice = 3.12,
+                ImagePath = "",
+                AvailableOffers = 1,
+                BoughtOffers = 4,
+                Status = OfferStatuses.WAIT_FOR_APPROVING
+            });
+
+            offers.Add(new OfferModel()
+            {
+                Name = "Ponuda 3",
+                Description = "Ponuda 3",
+                Created = new DateTime(2018, 5, 5),
+                Expires = new DateTime(2018, 5, 30),
+                RegularPrice = 10.34,
+                ActionPrice = 5.12,
+                ImagePath = "",
+                AvailableOffers = 10,
+                BoughtOffers = 6,
+                Status = OfferStatuses.WAIT_FOR_APPROVING
+            });
+
+            context.Offers.AddRange(offers);
         }
     }
 }

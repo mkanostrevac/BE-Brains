@@ -11,13 +11,13 @@ namespace Project.Services
 
         UserModel CreateUser(UserModel newUser);
 
-        UserModel UpdateUser(int userId, string firstName, string lastName, string username, string email);
+        UserModel UpdateUser(int id, string firstName, string lastName, string username, string email);
 
-        UserModel UpdateUserRole(int userId, UserRoles newRole);
+        UserModel UpdateUserRole(int id, UserRoles newRole);
 
-        UserModel UpdatePassword(int userId, string oldPassword, string newPassword);
+        UserModel UpdatePassword(int id, string oldPassword, string newPassword);
 
-        UserModel DeleteUser(int userId);
+        UserModel DeleteUser(int id);
 
         UserModel GetUserByUsername(string username);
     }

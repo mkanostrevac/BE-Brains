@@ -23,6 +23,9 @@ namespace Project.Repositories
         [Dependency]
         public IGenericRepository<CategoryModel> CategoriesRepository { get; set; }
 
+        [Dependency]
+        public IGenericRepository<OfferModel> OffersRepository { get; set; }
+
         public void Save()
         {
             context.SaveChanges();

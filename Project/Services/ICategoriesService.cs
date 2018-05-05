@@ -11,7 +11,7 @@ namespace Project.Services
 
         CategoryModel UpdateCategory(CategoryModel category);
 
-        CategoryModel DeleteCategory(int userId);
+        CategoryModel DeleteCategory(int id);
 
         CategoryModel GetCategory(int id);
     }

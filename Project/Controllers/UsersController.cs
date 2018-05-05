@@ -60,7 +60,7 @@ namespace Project.Controllers
             return Created("", createdUser);
         }
 
-        // PUT: /project/users/{id} - izmena postojeceg korisnika
+        // PUT: /project/users/{id} - promena postojeceg korisnika
         [Route("{id:int}")]
         [ResponseType(typeof(UserModel))]
         public IHttpActionResult PutUser(int id, UserModel user)
@@ -85,7 +85,7 @@ namespace Project.Controllers
             return Ok(updatedUser);
         }
 
-        // PUT: /project/users/change/{id}/role/{role} - izmena role (uloge) postojeceg korisnika
+        // PUT: /project/users/change/{id}/role/{role} - promena role (uloge) postojeceg korisnika
         [Route("change/{id:int}/role/{role:int}")]
         [ResponseType(typeof(UserModel))]
         public IHttpActionResult PutUserRole(int id, UserRoles role)
@@ -100,7 +100,7 @@ namespace Project.Controllers
             return Ok(userWithUpdatedRole);
         }
 
-        // PUT: /project/users/changePassword/{id} - izmena lozinke postojeceg korisnika
+        // PUT: /project/users/changePassword/{id} - promena lozinke postojeceg korisnika
         [Route("changePassword/{id:int}")]
         [ResponseType(typeof(UserModel))]
         public IHttpActionResult PutPassword(int id, [FromUri] string oldPassword, [FromUri]string newPassword)

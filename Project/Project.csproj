@@ -120,6 +120,7 @@
   <ItemGroup>
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\OffersController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -128,12 +129,15 @@
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\DataAccessContext.cs" />
     <Compile Include="Models\DataAccessContextInitializer.cs" />
+    <Compile Include="Models\OfferModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\IGenericRepository.cs" />
     <Compile Include="Repositories\IUnitOfWork.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Services\OffersService.cs" />
+    <Compile Include="Services\IOffersService.cs" />
     <Compile Include="Services\ICategoriesService.cs" />
     <Compile Include="Services\IUsersService.cs" />
     <Compile Include="Services\CategoriesService.cs" />

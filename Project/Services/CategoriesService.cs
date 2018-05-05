@@ -35,9 +35,9 @@ namespace Project.Services
             return category;
         }
 
-        public CategoryModel DeleteCategory(int categoryId)
+        public CategoryModel DeleteCategory(int id)
         {
-            CategoryModel category = db.CategoriesRepository.GetByID(categoryId);
+            CategoryModel category = db.CategoriesRepository.GetByID(id);
 
             if (category != null)
             {

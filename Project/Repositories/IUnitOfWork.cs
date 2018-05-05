@@ -13,6 +13,8 @@ namespace Project.Repositories
 
         IGenericRepository<CategoryModel> CategoriesRepository { get; }
 
+        IGenericRepository<OfferModel> OffersRepository { get; }
+
         void Save();
     }
 }

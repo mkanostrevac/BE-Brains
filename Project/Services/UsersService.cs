@@ -34,9 +34,9 @@ namespace Project.Services
             return newUser;
         }
 
-        public UserModel UpdateUser(int userId, string firstName, string lastName, string username, string email)
+        public UserModel UpdateUser(int id, string firstName, string lastName, string username, string email)
         {
-            UserModel user = db.UsersRepository.GetByID(userId);
+            UserModel user = db.UsersRepository.GetByID(id);
 
             if (user != null)
             {
@@ -52,9 +52,9 @@ namespace Project.Services
             return user;
         }
 
-        public UserModel UpdateUserRole(int userId, UserRoles newRole)
+        public UserModel UpdateUserRole(int id, UserRoles newRole)
         {
-            UserModel user = db.UsersRepository.GetByID(userId);
+            UserModel user = db.UsersRepository.GetByID(id);
 
             if (user != null)
             {
@@ -66,9 +66,9 @@ namespace Project.Services
             return user;
         }
 
-        public UserModel UpdatePassword(int userId, string oldPassword, string newPassword)
+        public UserModel UpdatePassword(int id, string oldPassword, string newPassword)
         {
-            UserModel user = db.UsersRepository.GetByID(userId);
+            UserModel user = db.UsersRepository.GetByID(id);
 
             if (user != null)
             {
@@ -84,9 +84,9 @@ namespace Project.Services
             return user;
         }
 
-        public UserModel DeleteUser(int userId)
+        public UserModel DeleteUser(int id)
         {
-            UserModel user = db.UsersRepository.GetByID(userId);
+            UserModel user = db.UsersRepository.GetByID(id);
 
             if (user != null)
             {
