@@ -29,7 +29,6 @@ namespace Project.Models
             users.Add(new UserModel() { FirstName = "Zlatko", LastName = "Spasojevic", Username = "spasojevic", Password = "password", Email = "zlatko.spasojevic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
             users.Add(new UserModel() { FirstName = "Zoran", LastName = "Tomic", Username = "tomic", Password = "password", Email = "zoran.tomic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
             context.Users.AddRange(users);
-            base.Seed(context);
 
             // SEED CATEGORIES
             IList<CategoryModel> categories = new List<CategoryModel>();
@@ -38,7 +37,6 @@ namespace Project.Models
             CategoryModel category2 = new CategoryModel() { Name = "Sporet", Description = "Bela tehnika" };
             categories.Add(category2);
             context.Categories.AddRange(categories);
-            base.Seed(context);
 
             // SEED OFFERS
             IList<OfferModel> offers = new List<OfferModel>();
