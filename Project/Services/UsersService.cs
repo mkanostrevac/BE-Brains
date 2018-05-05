@@ -24,14 +24,14 @@ namespace Project.Services
             return db.UsersRepository.GetByID(id);
         }
 
-        public UserModel CreateUser(UserModel newUser)
+        public UserModel CreateUser(UserModel user)
         {
-            newUser.UserRole = UserRoles.ROLE_CUSTOMER;
+            user.UserRole = UserRoles.ROLE_CUSTOMER;
 
-            db.UsersRepository.Insert(newUser);
+            db.UsersRepository.Insert(user);
             db.Save();
 
-            return newUser;
+            return user;
         }
 
         public UserModel UpdateUser(int id, string firstName, string lastName, string username, string email)

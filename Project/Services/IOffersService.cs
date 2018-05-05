@@ -7,7 +7,7 @@ namespace Project.Services
     {
         IEnumerable<OfferModel> GetAllOffers();
 
-        OfferModel CreateOffer(OfferModel newOffer);
+        OfferModel CreateOffer(OfferModel offer);
 
         OfferModel UpdateOffer(int id, OfferModel offer);
 

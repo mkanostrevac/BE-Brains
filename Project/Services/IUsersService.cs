@@ -9,7 +9,7 @@ namespace Project.Services
 
         UserModel GetUser(int id);
 
-        UserModel CreateUser(UserModel newUser);
+        UserModel CreateUser(UserModel user);
 
         UserModel UpdateUser(int id, string firstName, string lastName, string username, string email);
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -42,5 +43,19 @@ namespace Project.Models
 
         [Column("status")]
         public OfferStatuses Status { get; set; }
+
+        [NotMapped] // koristi se samo pri dodavanju ili promeni ponude
+        public int? CategoryID { get; set; }
+
+        [NotMapped] // koristi se samo pri dodavanju ili promeni ponude
+        public int? UserID { get; set; }
+
+        [Column("category_id")]
+        public virtual CategoryModel Category { get; set; }
+
+        [Column("user_id")]
+        public virtual UserModel User { get; set; }
+
+        public OfferModel() { }
     }
 }

@@ -19,12 +19,12 @@ namespace Project.Services
             return db.CategoriesRepository.Get();
         }
 
-        public CategoryModel CreateCategory(CategoryModel newCategory)
+        public CategoryModel CreateCategory(CategoryModel category)
         {
-            db.CategoriesRepository.Insert(newCategory);
+            db.CategoriesRepository.Insert(category);
             db.Save();
 
-            return newCategory;
+            return category;
         }
 
         public CategoryModel UpdateCategory(CategoryModel category)

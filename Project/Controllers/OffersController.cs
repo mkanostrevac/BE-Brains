@@ -17,10 +17,14 @@ namespace Project.Controllers
     public class OffersController : ApiController
     {
         private IOffersService offersService;
+        private ICategoriesService categoriesService;
+        private IUsersService usersService;
 
-        public OffersController(IOffersService offersService)
+        public OffersController(IOffersService offersService, ICategoriesService categoriesService, IUsersService usersService)
         {
             this.offersService = offersService;
+            this.categoriesService = categoriesService;
+            this.usersService = usersService;
         }
 
         // GET: /project/offers - vraca listu svih ponuda
@@ -35,11 +39,26 @@ namespace Project.Controllers
         [ResponseType(typeof(OfferModel))]
         public IHttpActionResult PostOffer(OfferModel offer)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || offer.CategoryID == null || offer.UserID == null)
             {
                 return BadRequest(ModelState);
             }
 
+            CategoryModel category = categoriesService.GetCategory((int)offer.CategoryID);
+            UserModel user = usersService.GetUser((int)offer.UserID);
+
+            if (category == null || user == null)
+            {
+                return NotFound();
+            }
+
+            if (user.UserRole != UserRoles.ROLE_SELLER)
+            {
+                return BadRequest("User's role must be ROLE_SELLER");
+            }
+
+            offer.Category = category;
+            offer.User = user;
             OfferModel createdOffer = offersService.CreateOffer(offer);
 
             return CreatedAtRoute("PostOffer", new { id = createdOffer.ID }, createdOffer);
@@ -50,7 +69,7 @@ namespace Project.Controllers
         [ResponseType(typeof(OfferModel))]
         public IHttpActionResult PutOffer(int id, OfferModel offer)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || offer.CategoryID == null  || offer.UserID == null)
             {
                 return BadRequest(ModelState);
             }
@@ -60,6 +79,21 @@ namespace Project.Controllers
                 return BadRequest();
             }
 
+            CategoryModel category = categoriesService.GetCategory((int)offer.CategoryID);
+            UserModel user = usersService.GetUser((int)offer.UserID);
+
+            if (category == null || user == null)
+            {
+                return NotFound();
+            }
+
+            if (user.UserRole != UserRoles.ROLE_SELLER)
+            {
+                return BadRequest("User's role must be ROLE_SELLER");
+            }
+
+            offer.Category = category;
+            offer.User = user;
             OfferModel updatedOffer = offersService.UpdateOffer(id, offer);
 
             if (updatedOffer == null)

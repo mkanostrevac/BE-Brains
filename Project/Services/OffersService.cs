@@ -19,12 +19,12 @@ namespace Project.Services
             return db.OffersRepository.Get();
         }
 
-        public OfferModel CreateOffer(OfferModel newOffer)
+        public OfferModel CreateOffer(OfferModel offer)
         {
-            db.OffersRepository.Insert(newOffer);
+            db.OffersRepository.Insert(offer);
             db.Save();
 
-            return newOffer;
+            return offer;
         }
 
         public OfferModel UpdateOffer(int id, OfferModel offer)
@@ -42,6 +42,8 @@ namespace Project.Services
                 updatedOffer.ImagePath = offer.ImagePath;
                 updatedOffer.AvailableOffers = offer.AvailableOffers;
                 updatedOffer.BoughtOffers = offer.BoughtOffers;
+                updatedOffer.Category = offer.Category;
+                updatedOffer.User = offer.User;
 
                 db.OffersRepository.Update(updatedOffer);
                 db.Save();

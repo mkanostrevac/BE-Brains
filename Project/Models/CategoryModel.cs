@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project.Models
 {
@@ -12,5 +14,10 @@ namespace Project.Models
 
         [Column("description")]
         public string Description { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<OfferModel> Offers { get; set; }
+
+        public CategoryModel() { }
     }
 }

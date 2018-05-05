@@ -9,22 +9,15 @@ namespace Project.Models
     {
         protected override void Seed(DataAccessContext context)
         {
-            SeedUsers(context);
-            SeedCategories(context);
-            SeedOffers(context);
-
-            base.Seed(context);
-        }
-
-        private void SeedUsers(DataAccessContext context)
-        {
+            // SEED USERS
             IList<UserModel> users = new List<UserModel>();
-
-            users.Add(new UserModel() { FirstName = "Boris", LastName = "Nedic", Username = "nedic", Password = "password", Email = "boris.nedic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
-            users.Add(new UserModel() { FirstName = "Aleksandra", LastName = "Vukovic", Username = "vukovic", Password = "password", Email = "aleksandra.vukovic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
+            UserModel user1 = new UserModel() { FirstName = "Boris", LastName = "Nedic", Username = "nedic", Password = "password", Email = "boris.nedic@gmail.com", UserRole = UserRoles.ROLE_SELLER };
+            users.Add(user1);
+            UserModel user2 = new UserModel() { FirstName = "Aleksandra", LastName = "Vukovic", Username = "vukovic", Password = "password", Email = "aleksandra.vukovic@gmail.com", UserRole = UserRoles.ROLE_SELLER };
+            users.Add(user2);
             users.Add(new UserModel() { FirstName = "Svetlana", LastName = "Radovanovic", Username = "radovanovic", Password = "password", Email = "svetlana.radovanovic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
             users.Add(new UserModel() { FirstName = "Nikola", LastName = "Brankovic", Username = "brankovic", Password = "password", Email = "nikola.brankovic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
-            users.Add(new UserModel() { FirstName = "Cedomir", LastName = "Ribic", Username = "ribic", Password = "password", Email = "cedomir.ribic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
+            users.Add(new UserModel() { FirstName = "Cedomir", LastName = "Ribic", Username = "ribic", Password = "password", Email = "cedomir.ribic@gmail.com", UserRole = UserRoles.ROLE_SELLER });
             users.Add(new UserModel() { FirstName = "Dusko", LastName = "Kovac", Username = "kovac", Password = "password", Email = "dusko.kovac@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
             users.Add(new UserModel() { FirstName = "Milan", LastName = "Golubovic", Username = "golubovic", Password = "password", Email = "milan.golubovic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
             users.Add(new UserModel() { FirstName = "Milan", LastName = "Ludoski", Username = "ludoski", Password = "password", Email = "milan.ludoski@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
@@ -35,24 +28,20 @@ namespace Project.Models
             users.Add(new UserModel() { FirstName = "Vladimir", LastName = "Cavic", Username = "cavic", Password = "password", Email = "vladimir.cavic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
             users.Add(new UserModel() { FirstName = "Zlatko", LastName = "Spasojevic", Username = "spasojevic", Password = "password", Email = "zlatko.spasojevic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
             users.Add(new UserModel() { FirstName = "Zoran", LastName = "Tomic", Username = "tomic", Password = "password", Email = "zoran.tomic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
-
             context.Users.AddRange(users);
-        }
+            base.Seed(context);
 
-        private void SeedCategories(DataAccessContext context)
-        {
+            // SEED CATEGORIES
             IList<CategoryModel> categories = new List<CategoryModel>();
-
-            categories.Add(new CategoryModel() { Name = "Frizider", Description = "Bela tehnika" });
-            categories.Add(new CategoryModel() { Name = "Sporet", Description = "Bela tehnika" });
-
+            CategoryModel category1 = new CategoryModel() { Name = "Frizider", Description = "Bela tehnika" };
+            categories.Add(category1);
+            CategoryModel category2 = new CategoryModel() { Name = "Sporet", Description = "Bela tehnika" };
+            categories.Add(category2);
             context.Categories.AddRange(categories);
-        }
+            base.Seed(context);
 
-        private void SeedOffers(DataAccessContext context)
-        {
+            // SEED OFFERS
             IList<OfferModel> offers = new List<OfferModel>();
-
             offers.Add(new OfferModel()
             {
                 Name = "Ponuda 1",
@@ -64,9 +53,10 @@ namespace Project.Models
                 ImagePath = "",
                 AvailableOffers = 2,
                 BoughtOffers = 10,
-                Status = OfferStatuses.WAIT_FOR_APPROVING
+                Status = OfferStatuses.WAIT_FOR_APPROVING,
+                Category = category1,
+                User = user1
             });
-
             offers.Add(new OfferModel()
             {
                 Name = "Ponuda 2",
@@ -78,9 +68,10 @@ namespace Project.Models
                 ImagePath = "",
                 AvailableOffers = 1,
                 BoughtOffers = 4,
-                Status = OfferStatuses.WAIT_FOR_APPROVING
+                Status = OfferStatuses.WAIT_FOR_APPROVING,
+                Category = category1,
+                User = user2
             });
-
             offers.Add(new OfferModel()
             {
                 Name = "Ponuda 3",
@@ -92,10 +83,12 @@ namespace Project.Models
                 ImagePath = "",
                 AvailableOffers = 10,
                 BoughtOffers = 6,
-                Status = OfferStatuses.WAIT_FOR_APPROVING
+                Status = OfferStatuses.WAIT_FOR_APPROVING,
+                Category = category2,
+                User = user2
             });
-
             context.Offers.AddRange(offers);
+            base.Seed(context);
         }
     }
 }

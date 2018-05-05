@@ -7,7 +7,7 @@ namespace Project.Services
     {
         IEnumerable<CategoryModel> GetAllCategories();
 
-        CategoryModel CreateCategory(CategoryModel newCategory);
+        CategoryModel CreateCategory(CategoryModel category);
 
         CategoryModel UpdateCategory(CategoryModel category);
 
