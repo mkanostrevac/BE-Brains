@@ -20,11 +20,15 @@ namespace Project
 
             // e.g. container.RegisterType<ITestService, TestService>();
 
-            container.RegisterType<IUsersService, UsersService>();
-
             container.RegisterType<IUnitOfWork, UnitOfWork>();
+
             container.RegisterType<IGenericRepository<UserModel>, GenericRepository<UserModel>>();
+            container.RegisterType<IGenericRepository<CategoryModel>, GenericRepository<CategoryModel>>();
+
             container.RegisterType<DbContext, DataAccessContext>(new HierarchicalLifetimeManager());
+
+            container.RegisterType<IUsersService, UsersService>();
+            container.RegisterType<ICategoriesService, CategoriesService>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

@@ -9,7 +9,9 @@ namespace Project.Repositories
 {
     public interface IUnitOfWork
     {
-        IGenericRepository<UserModel> UsersRepository { get;}
+        IGenericRepository<UserModel> UsersRepository { get; }
+
+        IGenericRepository<CategoryModel> CategoriesRepository { get; }
 
         void Save();
     }

@@ -20,6 +20,9 @@ namespace Project.Repositories
         [Dependency]
         public IGenericRepository<UserModel> UsersRepository { get; set; }
 
+        [Dependency]
+        public IGenericRepository<CategoryModel> CategoriesRepository { get; set; }
+
         public void Save()
         {
             context.SaveChanges();

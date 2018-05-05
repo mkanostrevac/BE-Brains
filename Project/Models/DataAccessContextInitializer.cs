@@ -8,6 +8,14 @@ namespace Project.Models
     {
         protected override void Seed(DataAccessContext context)
         {
+            SeedUsers(context);
+            SeedCategories(context);
+
+            base.Seed(context);
+        }
+
+        private void SeedUsers(DataAccessContext context)
+        {
             IList<UserModel> users = new List<UserModel>();
 
             users.Add(new UserModel() { FirstName = "Boris", LastName = "Nedic", Username = "nedic", Password = "password", Email = "boris.nedic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
@@ -27,8 +35,16 @@ namespace Project.Models
             users.Add(new UserModel() { FirstName = "Zoran", LastName = "Tomic", Username = "tomic", Password = "password", Email = "zoran.tomic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
 
             context.Users.AddRange(users);
+        }
 
-            base.Seed(context);
+        private void SeedCategories(DataAccessContext context)
+        {
+            IList<CategoryModel> categories = new List<CategoryModel>();
+
+            categories.Add(new CategoryModel() { Name = "Frizider", Description = "Bela tehnika" });
+            categories.Add(new CategoryModel() { Name = "Sporet", Description = "Bela tehnika" });
+
+            context.Categories.AddRange(categories);
         }
     }
 }
