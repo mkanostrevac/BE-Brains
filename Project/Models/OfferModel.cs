@@ -48,13 +48,16 @@ namespace Project.Models
         public int? CategoryID { get; set; }
 
         [NotMapped] // koristi se samo pri dodavanju ili promeni ponude
-        public int? UserID { get; set; }
+        public int? SellerID { get; set; }
 
         [Column("category_id")]
         public virtual CategoryModel Category { get; set; }
 
-        [Column("user_id")]
-        public virtual UserModel User { get; set; }
+        [Column("seller_id")] // Prodavac (Seller)
+        public virtual UserModel Seller { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<BillModel> Bills { get; set; }
 
         public OfferModel() { }
     }

@@ -43,7 +43,7 @@ namespace Project.Services
                 updatedOffer.AvailableOffers = offer.AvailableOffers;
                 updatedOffer.BoughtOffers = offer.BoughtOffers;
                 updatedOffer.Category = offer.Category;
-                updatedOffer.User = offer.User;
+                updatedOffer.Seller = offer.Seller;
 
                 db.OffersRepository.Update(updatedOffer);
                 db.Save();

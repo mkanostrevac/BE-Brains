@@ -15,7 +15,8 @@ namespace Project.Models
             users.Add(user1);
             UserModel user2 = new UserModel() { FirstName = "Aleksandra", LastName = "Vukovic", Username = "vukovic", Password = "password", Email = "aleksandra.vukovic@gmail.com", UserRole = UserRoles.ROLE_SELLER };
             users.Add(user2);
-            users.Add(new UserModel() { FirstName = "Svetlana", LastName = "Radovanovic", Username = "radovanovic", Password = "password", Email = "svetlana.radovanovic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
+            UserModel user3 = new UserModel() { FirstName = "Svetlana", LastName = "Radovanovic", Username = "radovanovic", Password = "password", Email = "svetlana.radovanovic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER };
+            users.Add(user3);
             users.Add(new UserModel() { FirstName = "Nikola", LastName = "Brankovic", Username = "brankovic", Password = "password", Email = "nikola.brankovic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
             users.Add(new UserModel() { FirstName = "Cedomir", LastName = "Ribic", Username = "ribic", Password = "password", Email = "cedomir.ribic@gmail.com", UserRole = UserRoles.ROLE_SELLER });
             users.Add(new UserModel() { FirstName = "Dusko", LastName = "Kovac", Username = "kovac", Password = "password", Email = "dusko.kovac@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
@@ -40,7 +41,7 @@ namespace Project.Models
 
             // SEED OFFERS
             IList<OfferModel> offers = new List<OfferModel>();
-            offers.Add(new OfferModel()
+            OfferModel offer1 = new OfferModel()
             {
                 Name = "Ponuda 1",
                 Description = "Ponuda 1",
@@ -53,9 +54,11 @@ namespace Project.Models
                 BoughtOffers = 10,
                 Status = OfferStatuses.WAIT_FOR_APPROVING,
                 Category = category1,
-                User = user1
-            });
-            offers.Add(new OfferModel()
+                Seller = user1
+            };
+            offers.Add(offer1);
+
+            OfferModel offer2 = new OfferModel()
             {
                 Name = "Ponuda 2",
                 Description = "Ponuda 2",
@@ -68,9 +71,11 @@ namespace Project.Models
                 BoughtOffers = 4,
                 Status = OfferStatuses.WAIT_FOR_APPROVING,
                 Category = category1,
-                User = user2
-            });
-            offers.Add(new OfferModel()
+                Seller = user2
+            };
+            offers.Add(offer2);
+
+            OfferModel offer3 = new OfferModel()
             {
                 Name = "Ponuda 3",
                 Description = "Ponuda 3",
@@ -83,9 +88,41 @@ namespace Project.Models
                 BoughtOffers = 6,
                 Status = OfferStatuses.WAIT_FOR_APPROVING,
                 Category = category2,
-                User = user2
-            });
+                Seller = user2
+            };
+            offers.Add(offer3);
             context.Offers.AddRange(offers);
+
+            // SEED BILLS
+            IList<BillModel> bills = new List<BillModel>();
+            BillModel bill1 = new BillModel()
+            {
+                PaymentMade = false,
+                PaymentCanceled = false,
+                Offer = offer1,
+                Buyer = user3
+            };
+            bills.Add(bill1);
+
+            BillModel bill2 = new BillModel()
+            {
+                PaymentMade = false,
+                PaymentCanceled = false,
+                Offer = offer2,
+                Buyer = user3
+            };
+            bills.Add(bill2);
+
+            BillModel bill3 = new BillModel()
+            {
+                PaymentMade = false,
+                PaymentCanceled = false,
+                Offer = offer3,
+                Buyer = user3
+            };
+            bills.Add(bill3);
+            context.Bills.AddRange(bills);
+
             base.Seed(context);
         }
     }

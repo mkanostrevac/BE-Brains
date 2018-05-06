@@ -15,6 +15,8 @@ namespace Project.Repositories
 
         IGenericRepository<OfferModel> OffersRepository { get; }
 
+        IGenericRepository<BillModel> BillsRepository { get; }
+
         void Save();
     }
 }

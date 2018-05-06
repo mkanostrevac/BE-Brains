@@ -32,6 +32,9 @@ namespace Project.Models
         [JsonIgnore]
         public virtual ICollection<OfferModel> Offers { get; set; }
 
+        [JsonIgnore]
+        public virtual ICollection<BillModel> Bills { get; set; }
+
         public UserModel() { }
     }
 }

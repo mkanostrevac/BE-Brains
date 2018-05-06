@@ -25,12 +25,14 @@ namespace Project
             container.RegisterType<IGenericRepository<UserModel>, GenericRepository<UserModel>>();
             container.RegisterType<IGenericRepository<CategoryModel>, GenericRepository<CategoryModel>>();
             container.RegisterType<IGenericRepository<OfferModel>, GenericRepository<OfferModel>>();
+            container.RegisterType<IGenericRepository<BillModel>, GenericRepository<BillModel>>();
 
             container.RegisterType<DbContext, DataAccessContext>(new HierarchicalLifetimeManager());
 
             container.RegisterType<IUsersService, UsersService>();
             container.RegisterType<ICategoriesService, CategoriesService>();
             container.RegisterType<IOffersService, OffersService>();
+            container.RegisterType<IBillsService, BillsService>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

@@ -39,26 +39,26 @@ namespace Project.Controllers
         [ResponseType(typeof(OfferModel))]
         public IHttpActionResult PostOffer(OfferModel offer)
         {
-            if (!ModelState.IsValid || offer.CategoryID == null || offer.UserID == null)
+            if (!ModelState.IsValid || offer.CategoryID == null || offer.SellerID == null)
             {
                 return BadRequest(ModelState);
             }
 
             CategoryModel category = categoriesService.GetCategory((int)offer.CategoryID);
-            UserModel user = usersService.GetUser((int)offer.UserID);
+            UserModel seller = usersService.GetUser((int)offer.SellerID);
 
-            if (category == null || user == null)
+            if (category == null || seller == null)
             {
                 return NotFound();
             }
 
-            if (user.UserRole != UserRoles.ROLE_SELLER)
+            if (seller.UserRole != UserRoles.ROLE_SELLER)
             {
                 return BadRequest("User's role must be ROLE_SELLER");
             }
 
             offer.Category = category;
-            offer.User = user;
+            offer.Seller = seller;
             OfferModel createdOffer = offersService.CreateOffer(offer);
 
             return CreatedAtRoute("PostOffer", new { id = createdOffer.ID }, createdOffer);
@@ -69,7 +69,7 @@ namespace Project.Controllers
         [ResponseType(typeof(OfferModel))]
         public IHttpActionResult PutOffer(int id, OfferModel offer)
         {
-            if (!ModelState.IsValid || offer.CategoryID == null  || offer.UserID == null)
+            if (!ModelState.IsValid || offer.CategoryID == null  || offer.SellerID == null)
             {
                 return BadRequest(ModelState);
             }
@@ -80,20 +80,20 @@ namespace Project.Controllers
             }
 
             CategoryModel category = categoriesService.GetCategory((int)offer.CategoryID);
-            UserModel user = usersService.GetUser((int)offer.UserID);
+            UserModel seller = usersService.GetUser((int)offer.SellerID);
 
-            if (category == null || user == null)
+            if (category == null || seller == null)
             {
                 return NotFound();
             }
 
-            if (user.UserRole != UserRoles.ROLE_SELLER)
+            if (seller.UserRole != UserRoles.ROLE_SELLER)
             {
                 return BadRequest("User's role must be ROLE_SELLER");
             }
 
             offer.Category = category;
-            offer.User = user;
+            offer.Seller = seller;
             OfferModel updatedOffer = offersService.UpdateOffer(id, offer);
 
             if (updatedOffer == null)
