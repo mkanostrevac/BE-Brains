@@ -9,7 +9,7 @@ namespace Project.Models
     {
         protected override void Seed(DataAccessContext context)
         {
-            // SEED USERS
+            // kreiranje korisnika
             IList<UserModel> users = new List<UserModel>();
             UserModel user1 = new UserModel() { FirstName = "Boris", LastName = "Nedic", Username = "nedic", Password = "password", Email = "boris.nedic@gmail.com", UserRole = UserRoles.ROLE_SELLER };
             users.Add(user1);
@@ -31,7 +31,7 @@ namespace Project.Models
             users.Add(new UserModel() { FirstName = "Zoran", LastName = "Tomic", Username = "tomic", Password = "password", Email = "zoran.tomic@gmail.com", UserRole = UserRoles.ROLE_CUSTOMER });
             context.Users.AddRange(users);
 
-            // SEED CATEGORIES
+            // kreiranje kategorija
             IList<CategoryModel> categories = new List<CategoryModel>();
             CategoryModel category1 = new CategoryModel() { Name = "Frizider", Description = "Bela tehnika" };
             categories.Add(category1);
@@ -39,7 +39,7 @@ namespace Project.Models
             categories.Add(category2);
             context.Categories.AddRange(categories);
 
-            // SEED OFFERS
+            // kreiranje ponuda
             IList<OfferModel> offers = new List<OfferModel>();
             OfferModel offer1 = new OfferModel()
             {
@@ -93,7 +93,7 @@ namespace Project.Models
             offers.Add(offer3);
             context.Offers.AddRange(offers);
 
-            // SEED BILLS
+            // kreiranje racuna
             IList<BillModel> bills = new List<BillModel>();
             BillModel bill1 = new BillModel()
             {
@@ -122,6 +122,36 @@ namespace Project.Models
             };
             bills.Add(bill3);
             context.Bills.AddRange(bills);
+
+            // kreiranje vaucera
+            IList<VoucherModel> vouchers = new List<VoucherModel>();
+            VoucherModel voucher1 = new VoucherModel()
+            {
+                ExpirationDate = new DateTime(2018, 1, 1),
+                IsUsed = false,
+                Offer = offer1,
+                Buyer = user3
+            };
+            vouchers.Add(voucher1);
+
+            VoucherModel voucher2 = new VoucherModel()
+            {
+                ExpirationDate = new DateTime(2018, 6, 6),
+                IsUsed = false,
+                Offer = offer2,
+                Buyer = user3
+            };
+            vouchers.Add(voucher2);
+
+            VoucherModel voucher3 = new VoucherModel()
+            {
+                ExpirationDate = new DateTime(2018, 10, 10),
+                IsUsed = false,
+                Offer = offer3,
+                Buyer = user3
+            };
+            vouchers.Add(voucher3);
+            context.Vouchers.AddRange(vouchers);
 
             base.Seed(context);
         }

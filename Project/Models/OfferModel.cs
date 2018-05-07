@@ -53,11 +53,14 @@ namespace Project.Models
         [Column("category_id")]
         public virtual CategoryModel Category { get; set; }
 
-        [Column("seller_id")] // Prodavac (Seller)
+        [Column("seller_id")]
         public virtual UserModel Seller { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<BillModel> Bills { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<VoucherModel> Vouchers { get; set; }
 
         public OfferModel() { }
     }

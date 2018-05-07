@@ -120,6 +120,7 @@
   <ItemGroup>
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\VouchersController.cs" />
     <Compile Include="Controllers\BillsController.cs" />
     <Compile Include="Controllers\OffersController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\VoucherModel.cs" />
     <Compile Include="Models\BillModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\DataAccessContext.cs" />
@@ -138,7 +140,9 @@
     <Compile Include="Repositories\IGenericRepository.cs" />
     <Compile Include="Repositories\IUnitOfWork.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Services\VouchersService.cs" />
     <Compile Include="Services\BillsService.cs" />
+    <Compile Include="Services\IVouchersService.cs" />
     <Compile Include="Services\IBillsService.cs" />
     <Compile Include="Services\OffersService.cs" />
     <Compile Include="Services\IOffersService.cs" />

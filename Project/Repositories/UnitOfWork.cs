@@ -29,6 +29,9 @@ namespace Project.Repositories
         [Dependency]
         public IGenericRepository<BillModel> BillsRepository { get; set; }
 
+        [Dependency]
+        public IGenericRepository<VoucherModel> VouchersRepository { get; set; }
+
         public void Save()
         {
             context.SaveChanges();

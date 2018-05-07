@@ -23,7 +23,7 @@ namespace Project.Models
         [Column("offer_id")]
         public virtual OfferModel Offer { get; set; }
 
-        [Column("buyer_id")] // Kupac (Buyer)
+        [Column("buyer_id")]
         public virtual UserModel Buyer { get; set; }
 
         [Column("created_at")]

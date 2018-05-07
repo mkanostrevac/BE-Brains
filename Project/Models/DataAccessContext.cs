@@ -17,5 +17,6 @@ namespace Project.Models
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<OfferModel> Offers { get; set; }
         public DbSet<BillModel> Bills { get; set; }
+        public DbSet<VoucherModel> Vouchers { get; set; }
     }
 }

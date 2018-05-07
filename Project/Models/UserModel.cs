@@ -35,6 +35,9 @@ namespace Project.Models
         [JsonIgnore]
         public virtual ICollection<BillModel> Bills { get; set; }
 
+        [JsonIgnore]
+        public virtual ICollection<VoucherModel> Vouchers { get; set; }
+
         public UserModel() { }
     }
 }

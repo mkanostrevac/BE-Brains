@@ -26,6 +26,7 @@ namespace Project
             container.RegisterType<IGenericRepository<CategoryModel>, GenericRepository<CategoryModel>>();
             container.RegisterType<IGenericRepository<OfferModel>, GenericRepository<OfferModel>>();
             container.RegisterType<IGenericRepository<BillModel>, GenericRepository<BillModel>>();
+            container.RegisterType<IGenericRepository<VoucherModel>, GenericRepository<VoucherModel>>();
 
             container.RegisterType<DbContext, DataAccessContext>(new HierarchicalLifetimeManager());
 
@@ -33,6 +34,7 @@ namespace Project
             container.RegisterType<ICategoriesService, CategoriesService>();
             container.RegisterType<IOffersService, OffersService>();
             container.RegisterType<IBillsService, BillsService>();
+            container.RegisterType<IVouchersService, VouchersService>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
