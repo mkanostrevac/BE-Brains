@@ -13,12 +13,14 @@ namespace Project.Controllers
         private IBillsService billsService;
         private IOffersService offersService;
         private IUsersService usersService;
+        private IVouchersService vouchersService;
 
-        public BillsController(IBillsService billsService, IOffersService offersService, IUsersService usersService)
+        public BillsController(IBillsService billsService, IOffersService offersService, IUsersService usersService, IVouchersService vouchersService)
         {
             this.billsService = billsService;
             this.offersService = offersService;
             this.usersService = usersService;
+            this.vouchersService = vouchersService;
         }
 
         // GET: /project/bills - vraca listu svih racuna
@@ -53,6 +55,8 @@ namespace Project.Controllers
 
             bill.Offer = offer;
             bill.Buyer = buyer;
+
+            offersService.UpdateOffer(offer, true);
             BillModel createdBill = billsService.CreateBill(bill);
 
             return CreatedAtRoute("PostBill", new { id = createdBill.ID }, createdBill);
@@ -63,7 +67,7 @@ namespace Project.Controllers
         [ResponseType(typeof(BillModel))]
         public IHttpActionResult PutBill(int id, BillModel bill)
         {
-            if (!ModelState.IsValid || bill.OfferID == null || bill.BuyerID == null)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
@@ -73,26 +77,21 @@ namespace Project.Controllers
                 return BadRequest();
             }
 
-            OfferModel offer = offersService.GetOffer((int)bill.OfferID);
-            UserModel buyer = usersService.GetUser((int)bill.BuyerID);
-
-            if (offer == null || buyer == null)
-            {
-                return NotFound();
-            }
-
-            if (buyer.UserRole != UserRoles.ROLE_CUSTOMER)
-            {
-                return BadRequest("User's role must be ROLE_CUSTOMER");
-            }
-
-            bill.Offer = offer;
-            bill.Buyer = buyer;
             BillModel updatedBill = billsService.UpdateBill(id, bill);
 
             if (updatedBill == null)
             {
                 return NotFound();
+            }
+
+            if (updatedBill.PaymentMade)
+            {
+                // TODO vouchersService.CreateVoucher(updatedBill);
+            }
+
+            if (updatedBill.PaymentCanceled)
+            {
+                offersService.UpdateOffer(updatedBill.Offer, false);
             }
 
             return Ok(updatedBill);

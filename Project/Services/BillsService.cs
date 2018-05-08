@@ -22,6 +22,9 @@ namespace Project.Services
 
         public BillModel CreateBill(BillModel bill)
         {
+            bill.PaymentMade = false;
+            bill.PaymentCanceled = false;
+
             db.BillsRepository.Insert(bill);
             db.Save();
 

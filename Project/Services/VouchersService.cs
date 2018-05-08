@@ -22,6 +22,9 @@ namespace Project.Services
 
         public VoucherModel CreateVoucher(VoucherModel voucher)
         {
+            voucher.IsUsed = false;
+            voucher.ExpirationDate = (DateTime.UtcNow.AddDays(7));
+
             db.VouchersRepository.Insert(voucher);
             db.Save();
 

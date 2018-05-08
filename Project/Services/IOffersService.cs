@@ -11,6 +11,8 @@ namespace Project.Services
 
         OfferModel UpdateOffer(int id, OfferModel offer);
 
+        OfferModel UpdateOffer(OfferModel offer, bool isBillCreated);
+
         OfferModel DeleteOffer(int id);
 
         OfferModel GetOffer(int id);

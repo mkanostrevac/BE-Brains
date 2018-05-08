@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Project.Models;
 using Project.Repositories;
@@ -21,6 +22,10 @@ namespace Project.Services
 
         public OfferModel CreateOffer(OfferModel offer)
         {
+            offer.Status = OfferStatuses.WAIT_FOR_APPROVING;
+            offer.Created = DateTime.UtcNow;
+            offer.Expires = offer.Created.AddDays(10);
+
             db.OffersRepository.Insert(offer);
             db.Save();
 
@@ -50,6 +55,25 @@ namespace Project.Services
             }
 
             return updatedOffer;
+        }
+
+        public OfferModel UpdateOffer(OfferModel offer, bool isBillCreated)
+        {
+            if (isBillCreated)
+            {
+                offer.AvailableOffers--;
+                offer.BoughtOffers++;
+            }
+            else
+            {
+                offer.AvailableOffers++;
+                offer.BoughtOffers--;
+            }
+
+            db.OffersRepository.Update(offer);
+            db.Save();
+
+            return offer;
         }
 
         public OfferModel DeleteOffer(int id)
